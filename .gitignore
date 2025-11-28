@@ -1,0 +1,25 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build directories
+bin/
+build/
+
+# Go workspace files
+go.sum
+
+# Temporary files
+*.log
+*.tmp
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
