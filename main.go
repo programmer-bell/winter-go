@@ -12,6 +12,10 @@ func main() {
 	const conferenceTickets uint = 50
 	var reminingTickets uint = 50
 
+	// var booking = [50] string {"Jone","Nana","Alice"}
+	var booking [50] string
+
+
 	// fmt.Printf("ConferenceName is %T, conferenceTickets is %T and reminingTickets is %T \n" ,conferenceName,conferenceTickets,reminingTickets)
 
 	// fmt.Print("Hello World\n")
@@ -64,6 +68,13 @@ func main() {
 	fmt.Scanln(&userTickets)
 
 	reminingTickets -=  userTickets
+
+	booking[0] = fname + " " +lname
+
+	fmt.Printf("The whole array is :%v\n",booking)
+	fmt.Printf("The first array is: %v\n",booking[0])
+	fmt.Printf("The array type is: %T\n",booking[0])
+	fmt.Printf("The array length is: %d\n",len(booking))
 
 	fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
     fname, lname, age, email, userTickets)
