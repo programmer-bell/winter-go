@@ -41,10 +41,29 @@ func main() {
 	// fmt.Scanln(&name)
 	// fmt.Println("Name:", name)
 
-	var name string
+	// var name string
+	// var age int
+	// fmt.Scanf("%s %d", &name, &age)
+	// fmt.Println("The username is:",name,"and age is:", age)
+
+	var fname string
+	var lname string
 	var age int
-	fmt.Scanf("%s %d", &name, &age)
-	fmt.Println("The username is:",name,"and age is:", age)
+	var email string
+	var userTickets string
+
+	fmt.Print("Enter your first name:")
+	fmt.Scanln(&fname)
+	fmt.Print("Enter your last name:")
+	fmt.Scanln(&lname)
+	fmt.Print("Enter your age:")
+	fmt.Scanln(&age)
+	fmt.Print("Enter your email address:")
+	fmt.Scanln(&email)
+	fmt.Print("Enter your booking tickets:")
+	fmt.Scanln(&userTickets)
+	fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %s tickets.\n",
+    fname, lname, age, email, userTickets)
 
 
 
