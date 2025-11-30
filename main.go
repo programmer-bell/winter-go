@@ -30,4 +30,10 @@ func main() {
 	// var name = "Go Confirence"
 	// fmt.Print(name)
 
+	// var userName = "Bell"
+	// fmt.Printf("The user is :%v",userName)
+
+	userName := "Bell"
+	fmt.Printf("The user is :%v",userName)
+
 	}
