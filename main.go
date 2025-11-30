@@ -33,7 +33,19 @@ func main() {
 	// var userName = "Bell"
 	// fmt.Printf("The user is :%v",userName)
 
-	userName := "Bell"
-	fmt.Printf("The user is :%v",userName)
+	// var userName string
+	// fmt.Scan(&userName)
+	// fmt.Printf("The user is :%v",userName)
+
+	// var name string
+	// fmt.Scanln(&name)
+	// fmt.Println("Name:", name)
+
+	var name string
+	var age int
+	fmt.Scanf("%s %d", &name, &age)
+	fmt.Println("The username is:",name,"and age is:", age)
+
+
 
 	}
