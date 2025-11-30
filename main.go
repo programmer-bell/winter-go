@@ -9,8 +9,8 @@ func main() {
 	// var reminingTickets = 50
 
 	var conferenceName string = "Go Confirence"
-	const conferenceTickets int = 50
-	var reminingTickets int = 50
+	const conferenceTickets uint = 50
+	var reminingTickets uint = 50
 
 	// fmt.Printf("ConferenceName is %T, conferenceTickets is %T and reminingTickets is %T \n" ,conferenceName,conferenceTickets,reminingTickets)
 
@@ -48,9 +48,9 @@ func main() {
 
 	var fname string
 	var lname string
-	var age int
+	var age uint
 	var email string
-	var userTickets string
+	var userTickets uint
 
 	fmt.Print("Enter your first name:")
 	fmt.Scanln(&fname)
@@ -62,9 +62,13 @@ func main() {
 	fmt.Scanln(&email)
 	fmt.Print("Enter your booking tickets:")
 	fmt.Scanln(&userTickets)
-	fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %s tickets.\n",
+
+	reminingTickets -=  userTickets
+
+	fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
     fname, lname, age, email, userTickets)
 
+	fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
 
 
 	}
