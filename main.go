@@ -72,33 +72,54 @@ func main() {
 			fmt.Print("Enter your booking tickets:")
 			fmt.Scanln(&userTickets)
 
-			reminingTickets -=  userTickets
+			if userTickets <= reminingTickets {
 
-			// booking[0] = fname + " " +lname
-			booking = append(booking,fname + " " +lname )
+					reminingTickets -=  userTickets
 
-			// fmt.Printf("The whole array is :%v\n",booking)
-			// fmt.Printf("The first array is: %v\n",booking[0])
-			// fmt.Printf("The array type is: %T\n",booking[0])
-			// fmt.Printf("The array length is: %d\n",len(booking))
+					// booking[0] = fname + " " +lname
+					booking = append(booking,fname + " " +lname )
 
-			fmt.Printf("The whole slice is :%v\n",booking)
-			fmt.Printf("The first slice is: %v\n",booking[0])
-			fmt.Printf("The slice type is: %T\n",booking[0])
-			fmt.Printf("The slice length is: %d\n",len(booking))
+					// fmt.Printf("The whole array is :%v\n",booking)
+					// fmt.Printf("The first array is: %v\n",booking[0])
+					// fmt.Printf("The array type is: %T\n",booking[0])
+					// fmt.Printf("The array length is: %d\n",len(booking))
 
-			fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
-			fname, lname, age, email, userTickets)
+					fmt.Printf("The whole slice is :%v\n",booking)
+					fmt.Printf("The first slice is: %v\n",booking[0])
+					fmt.Printf("The slice type is: %T\n",booking[0])
+					fmt.Printf("The slice length is: %d\n",len(booking))
 
-			fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
+					fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
+					fname, lname, age, email, userTickets)
 
-			firstNames := []string{}
-			for _, booking := range booking{
-				var names = strings.Fields(booking)
-				firstNames = append(firstNames,names[0])
+					fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
+
+					firstNames := []string{}
+					for _, booking := range booking{
+						var names = strings.Fields(booking)
+						firstNames = append(firstNames,names[0])
+					}
+
+					fmt.Printf("These are all about our booking application:%v",booking)
+
+					// var noTicketRemaining bool =  reminingTickets == 0 
+					
+					// noTicketRemaining := reminingTickets == 0
+
+					// if noTicketRemaining {
+					if reminingTickets == 0 {
+						fmt.Println("Our conference is booked out. Come back next year.")
+						break
+					}
+
+			} else{
+
+				fmt.Printf("We only have %v ticktes remaining .So,you can not but %v tickets.",reminingTickets, userTickets)
+				continue
+
 			}
 
-			fmt.Printf("These are all about our booking application:%v",booking)
+
 		}
 
 }
