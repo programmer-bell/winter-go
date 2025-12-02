@@ -5,34 +5,23 @@ import (
 	"strings"
 )
 
+
+// var conferenceName = "Go Confirence"
+// const conferenceTickets = 50
+// var reminingTickets = 50
+
+var conferenceName string = "Go Confirence"
+const conferenceTickets uint = 50
+var reminingTickets uint = 50
+
+// var booking = [50] string {"Jone","Nana","Alice"}
+var booking [] string
+
+
 func main() {
 
-	// var conferenceName = "Go Confirence"
-	// const conferenceTickets = 50
-	// var reminingTickets = 50
+	greetUsers()
 
-	var conferenceName string = "Go Confirence"
-	const conferenceTickets uint = 50
-	var reminingTickets uint = 50
-
-	// var booking = [50] string {"Jone","Nana","Alice"}
-	var booking [] string
-
-
-	// fmt.Printf("ConferenceName is %T, conferenceTickets is %T and reminingTickets is %T \n" ,conferenceName,conferenceTickets,reminingTickets)
-
-	// fmt.Print("Hello World\n")
-	// fmt.Println("Hello World")
-	// fmt.Print("Understand golang")
-
-	// fmt.Println("Welcome to our ",conferenceName ,"booking application")
-
-	fmt.Printf("Welcome to our %v booking application\n",conferenceName)
-
-	// fmt.Println("We have total of",conferenceTickets, "tickets and",reminingTickets,"tickets are available")
-
-	fmt.Printf("We have total of %v tickets and %v tickets are available\n",conferenceTickets,reminingTickets)
-	fmt.Println("Get your tickets here to attend")
 
 	// var name = "Go Confirence"
 	// fmt.Print(name)
@@ -55,57 +44,21 @@ func main() {
 
 	for{
 
-			var fname string
-			var lname string
-			var age uint
-			var email string
-			var userTickets uint
+			// taking user input 
+			fname, lname, age, email,userTickets := getUserInput()
+			
+			// Validate user input function 
+			 isValidName, isValidEmail, isValidTicketNumber := validateUserInput(fname, lname,email,userTickets,reminingTickets)
 
-			fmt.Print("Enter your first name:")
-			fmt.Scanln(&fname)
-			fmt.Print("Enter your last name:")
-			fmt.Scanln(&lname)
-			fmt.Print("Enter your age:")
-			fmt.Scanln(&age)
-			fmt.Print("Enter your email address:")
-			fmt.Scanln(&email)
-			fmt.Print("Enter your booking tickets:")
-			fmt.Scanln(&userTickets)
-
-			// var isValidName bool = len(fname) >= 2 && len(lname) >= 2
-			isValidName := len(fname) >= 2 && len(lname) >= 2
-			isValidEmail := strings.Contains(email,"@")
-			isValidTicketNumber := userTickets > 0  && userTickets <= reminingTickets
 
 			if isValidName && isValidEmail && isValidTicketNumber {
 
-					reminingTickets -=  userTickets
+					// calling the function
+					bookTicket(reminingTickets, userTickets, booking, fname, lname, age, email, conferenceName)
 
-					// booking[0] = fname + " " +lname
-					booking = append(booking,fname + " " +lname )
-
-					// fmt.Printf("The whole array is :%v\n",booking)
-					// fmt.Printf("The first array is: %v\n",booking[0])
-					// fmt.Printf("The array type is: %T\n",booking[0])
-					// fmt.Printf("The array length is: %d\n",len(booking))
-
-					fmt.Printf("The whole slice is :%v\n",booking)
-					fmt.Printf("The first slice is: %v\n",booking[0])
-					fmt.Printf("The slice type is: %T\n",booking[0])
-					fmt.Printf("The slice length is: %d\n",len(booking))
-
-					fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
-					fname, lname, age, email, userTickets)
-
-					fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
-
-					firstNames := []string{}
-					for _, booking := range booking{
-						var names = strings.Fields(booking)
-						firstNames = append(firstNames,names[0])
-					}
-
-					fmt.Printf("These are all about our booking application:%v",booking)
+					// calling the function 
+					firstName := getFirstNames()
+					fmt.Printf("The first name of the booking are: %v\n",firstName)
 
 					// var noTicketRemaining bool =  reminingTickets == 0 
 					
@@ -138,5 +91,92 @@ func main() {
 		}
 
 }
+
+
+func greetUsers() {
+	fmt.Printf("Welcome to our %v\n" ,conferenceName)
+	// fmt.Printf("ConferenceName is %T, conferenceTickets is %T and reminingTickets is %T \n" ,conferenceName,conferenceTickets,reminingTickets)
+
+	// fmt.Print("Hello World\n")
+	// fmt.Println("Hello World")
+	// fmt.Print("Understand golang")
+
+	// fmt.Println("Welcome to our ",conferenceName ,"booking application")
+
+	fmt.Printf("Welcome to our %v booking application\n",conferenceName)
+
+	// fmt.Println("We have total of",conferenceTickets, "tickets and",reminingTickets,"tickets are available")
+
+	fmt.Printf("We have total of %v tickets and %v tickets are available\n",conferenceTickets,reminingTickets)
+	fmt.Println("Get your tickets here to attend")
+}
+
+
+func getFirstNames() [] string {
+	firstNames := []string{}
+	for _, booking := range booking{
+		var names = strings.Fields(booking)
+		firstNames = append(firstNames,names[0])
+	}
+	return firstNames 
+}
+
+
+func validateUserInput(fname string, lname string , email string , userTickets uint,reminingTickets uint ) (bool, bool, bool){
+	// var isValidName bool = len(fname) >= 2 && len(lname) >= 2
+	isValidName := len(fname) >= 2 && len(lname) >= 2
+	isValidEmail := strings.Contains(email,"@")
+	isValidTicketNumber := userTickets > 0  && userTickets <= reminingTickets
+	return isValidName, isValidEmail,isValidTicketNumber
+}
+
+
+func getUserInput() (string,string, uint,string,uint) {
+	var fname string
+	var lname string
+	var age uint
+	var email string
+	var userTickets uint
+
+	fmt.Print("Enter your first name:")
+	fmt.Scanln(&fname)
+	fmt.Print("Enter your last name:")
+	fmt.Scanln(&lname)
+	fmt.Print("Enter your age:")
+	fmt.Scanln(&age)
+	fmt.Print("Enter your email address:")
+	fmt.Scanln(&email)
+	fmt.Print("Enter your booking tickets:")
+	fmt.Scanln(&userTickets)
+
+	return fname, lname, age,  email, userTickets
+
+}
+
+func bookTicket(reminingTickets uint, userTickets uint, booking[] string, fname string, lname string, age uint , email string, conferenceName string) {
+
+	reminingTickets -=  userTickets
+
+	// booking[0] = fname + " " +lname
+	booking = append(booking,fname + " " +lname )
+
+	// fmt.Printf("The whole array is :%v\n",booking)
+	// fmt.Printf("The first array is: %v\n",booking[0])
+	// fmt.Printf("The array type is: %T\n",booking[0])
+	// fmt.Printf("The array length is: %d\n",len(booking))
+
+	fmt.Printf("The whole slice is :%v\n",booking)
+	fmt.Printf("The first slice is: %v\n",booking[0])
+	fmt.Printf("The slice type is: %T\n",booking[0])
+	fmt.Printf("The slice length is: %d\n",len(booking))
+
+	fmt.Printf("Thank you, %s %s. You are %d years old, your email is %s, and you have booked %d tickets.\n",
+	fname, lname, age, email, userTickets)
+
+	fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
+
+
+}
+
 
 
