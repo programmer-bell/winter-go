@@ -218,8 +218,8 @@ func main() {
 			firstNames := getFirstNames()
 			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
-			// NEW FEATURE: print all booking details
-			printAllBookings()
+			// // NEW FEATURE: print all booking details
+			// printAllBookings()
 
 			// stop if no more tickets
 			if remainingTickets == 0 {
