@@ -23,7 +23,6 @@
 
 // 	greetUsers()
 
-
 // 	// var name = "Go Confirence"
 // 	// fmt.Print(name)
 
@@ -45,24 +44,23 @@
 
 // 	for{
 
-// 			// taking user input 
+// 			// taking user input
 // 			fname, lname, age, email,userTickets := getUserInput()
-			
-// 			// Validate user input function 
-// 			 isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(fname, lname,email,userTickets,reminingTickets)
 
+// 			// Validate user input function
+// 			 isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(fname, lname,email,userTickets,reminingTickets)
 
 // 			if isValidName && isValidEmail && isValidTicketNumber {
 
 // 					// calling the function
 // 					bookTicket(reminingTickets, userTickets, booking, fname, lname, age, email, conferenceName)
 
-// 					// calling the function 
+// 					// calling the function
 // 					firstName := getFirstNames()
 // 					fmt.Printf("The first name of the booking are: %v\n",firstName)
 
-// 					// var noTicketRemaining bool =  reminingTickets == 0 
-					
+// 					// var noTicketRemaining bool =  reminingTickets == 0
+
 // 					// noTicketRemaining := reminingTickets == 0
 
 // 					// if noTicketRemaining {
@@ -88,11 +86,9 @@
 
 // 			}
 
-
 // 		}
 
 // }
-
 
 // func greetUsers() {
 // 	fmt.Printf("Welcome to our %v\n" ,conferenceName)
@@ -112,18 +108,14 @@
 // 	fmt.Println("Get your tickets here to attend")
 // }
 
-
 // func getFirstNames() [] string {
 // 	firstNames := []string{}
 // 	for _, booking := range booking{
 // 		var names = strings.Fields(booking)
 // 		firstNames = append(firstNames,names[0])
 // 	}
-// 	return firstNames 
+// 	return firstNames
 // }
-
-
-
 
 // func getUserInput() (string,string, uint,string,uint) {
 // 	var fname string
@@ -176,7 +168,6 @@
 
 // 	fmt.Printf("%v tickets remaining for %v\n",reminingTickets, conferenceName)
 
-
 // }
 
 package main
@@ -184,8 +175,6 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strconv"
-	"strings"
 )
 
 // ---------- Global Variables ----------
@@ -194,7 +183,19 @@ const conferenceTickets uint = 50
 var remainingTickets uint = 50
 
 // booking stores list of user maps
-var bookings = make([]map[string]string, 0)
+var bookings = make([]UserData, 0)
+
+
+type UserData struct {
+	fname string
+	lname string
+	age uint
+	email string
+	numberOfTickets uint
+}
+
+
+
 
 func main() {
 
@@ -258,12 +259,18 @@ func getFirstNames() []string {
 	// iterate through list of maps
 	for _, booking := range bookings {
 
-		fullName := booking["fname"] + " " + booking["lname"]
-		parts := strings.Fields(fullName)
+		// fullName := booking["fname"] + " " + booking["lname"]
+		// parts := strings.Fields(fullName)
 
-		if len(parts) > 0 {
-			firstNames = append(firstNames, parts[0])
-		}
+		// if len(parts) > 0 {
+		// 	firstNames = append(firstNames, parts[0])
+		// }
+
+
+		firstNames = append(firstNames, booking.fname)
+
+
+
 	}
 
 	return firstNames
@@ -303,12 +310,13 @@ func bookTicket(userTickets uint, fname string, lname string, age uint, email st
 	remainingTickets -= userTickets
 
 	// Create a user map for storing full information
-	userData := make(map[string]string)
-	userData["fname"] = fname
-	userData["lname"] = lname
-	userData["age"] = strconv.FormatUint(uint64(age), 10)
-	userData["email"] = email
-	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+	userData := UserData {
+		fname: fname,
+		lname: lname,
+		age : age,
+		email: email,
+		numberOfTickets: userTickets,
+	}
 
 	// Store map into bookings slice
 	bookings = append(bookings, userData)
@@ -325,19 +333,19 @@ func bookTicket(userTickets uint, fname string, lname string, age uint, email st
 }
 
 // ---------- NEW FEATURE: Print All Booking Details ----------
-func printAllBookings() {
-	fmt.Println("\n--- List of All Bookings ---")
+// func printAllBookings() {
+// 	fmt.Println("\n--- List of All Bookings ---")
 
-	for index, booking := range bookings {
-		fmt.Printf("%d. %s %s | Age: %s | Email: %s | Tickets: %s\n",
-			index+1,
-			booking["fname"],
-			booking["lname"],
-			booking["age"],
-			booking["email"],
-			booking["numberOfTickets"],
-		)
-	}
-}
+// 	for index, booking := range bookings {
+// 		fmt.Printf("%d. %s %s | Age: %s | Email: %s | Tickets: %s\n",
+// 			index+1,
+// 			booking["fname"],
+// 			booking["lname"],
+// 			booking["age"],
+// 			booking["email"],
+// 			booking["numberOfTickets"],
+// 		)
+// 	}
+// }
 
 
