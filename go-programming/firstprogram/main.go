@@ -9,10 +9,10 @@ func main(){
 	fmt.Println("We are learning golang")
 	myutils.PrintMessage("Hello World")
 
-	var name string = "Badhan Sarkar"
-	const age int = 21
-	address := "Balarampur,Coochbehar"
-	var salary float32 = 1200.502
+	var name string = "Mr. Allen"
+	const age int = 00
+	address := "Not Found"
+	var salary float32 = 120.09
 	domain := "Backend Developer"
 
 
