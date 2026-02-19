@@ -2,7 +2,7 @@
 Learn Go by doing — mistakes included.
 
 ## 📌 About This Project
-This repository is a personal journey of learning the **Go programming language** through **real, raw, unpolished practice**.
+This repository is a personal journey of learning the **Go programming language and it's one of popular framework called gin** through **real, raw, unpolished practice**.
 
 Instead of hiding errors or rewriting history, I’m embracing a “freeze the moment” mindset:
 every mistake, wrong attempt, messy idea, and fix stays here.  
@@ -26,6 +26,7 @@ But once you warm up, it becomes fun.
 
 ## 📂 What You'll Find Here
 - Small Go programs  
+- Crud API in Gin
 - Experiments and playground code  
 - Incorrect attempts (kept for learning)  
 - Notes and reflections  
