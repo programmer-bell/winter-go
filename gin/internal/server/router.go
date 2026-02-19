@@ -1,31 +1,26 @@
 package server
 
-import(
-
+import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"note_api/internal/handlers"
+	"note_api/internal/repository"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-
-func NewRouter() *gin.Engine{
+func NewRouter(db *mongo.Database) *gin.Engine {
 	r := gin.Default()
 
-	r.GET("/health",func(c *gin.Context){
-		c.JSON(http.StatusOK, gin.H{
-			"ok": true,
-			"status": "healthy",
-			"content-type":"jsonplaceholder",
-		})
-	})
+	blogRepo := repository.NewBlogRepository(db)
+	blogHandler := handlers.NewBlogHandler(blogRepo)
 
-	r.GET("/post",func(c *gin.Context){
-		c.JSON(http.StatusOK, gin.H{
-			"ok": true,
-			"status": "get-post",
-			"content-type":"jsonplaceholder",
-		})
-	})
-	return  r
+	api := r.Group("/api/v1")
+	{
+		api.POST("/blogs", blogHandler.Create)
+		api.GET("/blogs", blogHandler.GetAll)
+		api.GET("/blogs/:id", blogHandler.GetByID)
+		api.PUT("/blogs/:id", blogHandler.Update)
+		api.DELETE("/blogs/:id", blogHandler.Delete)
+	}
 
-
+	return r
 }

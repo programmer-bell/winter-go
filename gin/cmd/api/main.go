@@ -10,21 +10,20 @@ import (
 
 func main() {
 	cfg, err := config.Load()
-	client, _ , err := db.Connect(cfg)
 	if err != nil {
-		log.Fatalf("DB error")
+		log.Fatal(err)
 	}
-	defer func (){
-		if err := db.Disconnect(client); err != nil{
-			log.Printf("mongo disconnected error:%v",err)
-		}
-	}()
 
-	router := server.NewRouter()
+	client, database, err := db.Connect(cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Disconnect(client)
+
+	router := server.NewRouter(database)
 
 	addr := fmt.Sprintf(":%s", cfg.ServerPort)
 	if err := router.Run(addr); err != nil {
-		log.Fatalf("server failed")
+		log.Fatal(err)
 	}
-
 }
